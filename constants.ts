@@ -1,0 +1,348 @@
+import { ParadigmData, ReadinessLevel, AutonomyLevel, LatencyLevel } from './types';
+
+export const PARADIGMS: ParadigmData[] = [
+  {
+    id: 'low-code',
+    icon: '🧱',
+    type: 'Low-Code',
+    definition: 'Visuell + etwas Code',
+    examples: 'Retool, OutSystems, Microsoft PowerApps',
+    autonomy: AutonomyLevel.Low,
+    sourceOfTruth: 'Platform Config',
+    latency: LatencyLevel.Normal,
+    predictability: 'Mittel–hoch',
+    codeQuality: 'Mittel',
+    compatibility: 'Mittel',
+    origin: '🌐 Web',
+    productionReadiness: ReadinessLevel.Conditional, // 🟡
+    teamScaling: '⚠️',
+    reviewability: '🟡',
+    onboarding: '🟢',
+    typicalError: 'Vendor-Lock-in',
+    governanceFit: '⚠️'
+  },
+  {
+    id: 'no-code',
+    icon: '🎨',
+    type: 'No-Code',
+    definition: 'Rein visuell',
+    examples: 'Zapier, Webflow, Bubble',
+    autonomy: AutonomyLevel.Low,
+    sourceOfTruth: 'Platform Config',
+    latency: LatencyLevel.Normal,
+    predictability: 'Hoch',
+    codeQuality: 'Mittel',
+    compatibility: 'Mittel',
+    origin: '🌐 Web',
+    productionReadiness: ReadinessLevel.Restricted, // ⚠️
+    teamScaling: '❌',
+    reviewability: '🟢',
+    onboarding: '🟢',
+    typicalError: 'Nicht skalierbar',
+    governanceFit: '❌'
+  },
+  {
+    id: 'exploratory-vibe',
+    icon: '🧭',
+    type: 'Exploratory Vibe Coding',
+    definition: 'Prompt → Run → Hope',
+    examples: 'Google AI Studio, ChatGPT, v0, Bolt.new, Replit Agent',
+    autonomy: AutonomyLevel.High,
+    sourceOfTruth: 'Runtime',
+    latency: LatencyLevel.LateExpensive,
+    predictability: 'Niedrig',
+    codeQuality: 'Variabel',
+    compatibility: 'Sehr hoch',
+    origin: '💬 Web / Chat',
+    productionReadiness: ReadinessLevel.NotReady, // ❌
+    teamScaling: '❌',
+    reviewability: '🔴',
+    onboarding: '🔴',
+    typicalError: 'Implizite Annahmen',
+    governanceFit: '❌'
+  },
+  {
+    id: 'contained-vibe',
+    icon: '📦',
+    type: 'Contained Vibe Coding',
+    definition: 'Vibe mit Grenzen',
+    examples: 'Cursor (Composer), Windsurf, GitHub Copilot Workspace',
+    autonomy: AutonomyLevel.High,
+    sourceOfTruth: 'Scope / Env',
+    latency: LatencyLevel.Normal,
+    predictability: 'Mittel',
+    codeQuality: 'Mittel',
+    compatibility: 'Hoch',
+    origin: '🧑‍💻 IDE / CLI',
+    productionReadiness: ReadinessLevel.Restricted, // ⚠️
+    teamScaling: '⚠️',
+    reviewability: '🟡',
+    onboarding: '🟡',
+    typicalError: 'Boundary-Leaks',
+    governanceFit: '⚠️'
+  },
+  {
+    id: 'copilot',
+    icon: '✈️',
+    type: 'Copilot Coding',
+    definition: 'Inline-Assist',
+    examples: 'GitHub Copilot, Supermaven, Tabnine',
+    autonomy: AutonomyLevel.Medium,
+    sourceOfTruth: 'Developer Intent',
+    latency: LatencyLevel.Normal,
+    predictability: 'Mittel',
+    codeQuality: 'Mittel',
+    compatibility: 'Hoch',
+    origin: '🧑‍💻 IDE',
+    productionReadiness: ReadinessLevel.Restricted, // ⚠️
+    teamScaling: '⚠️',
+    reviewability: '🟡',
+    onboarding: '🟢',
+    typicalError: '“Looks-right”-Bugs',
+    governanceFit: '⚠️'
+  },
+  {
+    id: 'rag-coding',
+    icon: '📚',
+    type: 'RAG Coding',
+    definition: 'Assist + Retrieval',
+    examples: 'Glean, Sourcegraph Cody, Unblocked',
+    autonomy: AutonomyLevel.Medium,
+    sourceOfTruth: 'Code + Docs',
+    latency: LatencyLevel.Normal,
+    predictability: 'Mittel–hoch',
+    codeQuality: 'Mittel–hoch',
+    compatibility: 'Hoch',
+    origin: '🧑‍💻 IDE',
+    productionReadiness: ReadinessLevel.Restricted, // ⚠️
+    teamScaling: '🟢',
+    reviewability: '🟢',
+    onboarding: '🟡',
+    typicalError: 'Falsche Σ',
+    governanceFit: '🟢'
+  },
+  {
+    id: 'prompt-loop',
+    icon: '➰',
+    type: 'Prompt-Loop Engineering',
+    definition: 'Prompt → Run → Fix',
+    examples: 'Google AI Studio (System Prompts), OpenAI Playground',
+    autonomy: AutonomyLevel.Medium,
+    sourceOfTruth: 'Runtime Feedback',
+    latency: LatencyLevel.LateExpensive,
+    predictability: 'Mittel',
+    codeQuality: 'Mittel–hoch',
+    compatibility: 'Hoch',
+    origin: '🧑‍💻 CLI / IDE',
+    productionReadiness: ReadinessLevel.Restricted, // ⚠️
+    teamScaling: '⚠️',
+    reviewability: '🟡',
+    onboarding: '🔴',
+    typicalError: 'Endlose Loops',
+    governanceFit: '⚠️'
+  },
+  {
+    id: 'explain-driven',
+    icon: '🗣️',
+    type: 'Explain-Driven Coding',
+    definition: 'Erst erklären, dann Code',
+    examples: 'Aider (Chat Mode), GitHub Copilot Chat (Plan mode)',
+    autonomy: AutonomyLevel.Medium,
+    sourceOfTruth: 'Erklärung / Pseudocode',
+    latency: LatencyLevel.EarlyCheap, // ⏱️ Früh
+    predictability: 'Mittel–hoch',
+    codeQuality: 'Mittel–hoch',
+    compatibility: 'Hoch',
+    origin: '🧑‍💻 IDE',
+    productionReadiness: ReadinessLevel.Restricted, // ⚠️
+    teamScaling: '🟢',
+    reviewability: '🟢',
+    onboarding: '🟢',
+    typicalError: 'Falsche Erklärung',
+    governanceFit: '⚠️'
+  },
+  {
+    id: 'test-first',
+    icon: '🧪',
+    type: 'Test-First AI Coding',
+    definition: 'Tests zuerst',
+    examples: 'CodiumAI, Diffblue, Sweep AI',
+    autonomy: AutonomyLevel.Medium,
+    sourceOfTruth: 'Tests',
+    latency: LatencyLevel.EarlyCheap,
+    predictability: 'Hoch',
+    codeQuality: 'Hoch',
+    compatibility: 'Mittel',
+    origin: '🧑‍💻 IDE / CI',
+    productionReadiness: ReadinessLevel.ProductionReady, // 🟢
+    teamScaling: '🟢',
+    reviewability: '🟢',
+    onboarding: '🟡',
+    typicalError: 'Schlechte Tests',
+    governanceFit: '🟢'
+  },
+  {
+    id: 'spec-driven',
+    icon: '📜',
+    type: 'Spec-Driven Coding',
+    definition: 'Formale Specs',
+    examples: 'TypeChat, PydanticAI, OpenAPI Gen',
+    autonomy: AutonomyLevel.High,
+    sourceOfTruth: 'Spec / Schema',
+    latency: LatencyLevel.EarlyCheap,
+    predictability: 'Sehr hoch',
+    codeQuality: 'Sehr hoch',
+    compatibility: 'Niedrig',
+    origin: '📄 Repo / IDE',
+    productionReadiness: ReadinessLevel.ProductionReady, // 🟢
+    teamScaling: '🟢',
+    reviewability: '🟢',
+    onboarding: '🟡',
+    typicalError: 'Spec falsch',
+    governanceFit: '🟢'
+  },
+  {
+    id: 'schema-anchored',
+    icon: '⚓',
+    type: 'Schema-Anchored Coding',
+    definition: 'Types als Backbone',
+    examples: 'tRPC + AI, GraphQL Code Generator',
+    autonomy: AutonomyLevel.Medium,
+    sourceOfTruth: 'Schema / Types',
+    latency: LatencyLevel.EarlyCheap,
+    predictability: 'Hoch',
+    codeQuality: 'Hoch',
+    compatibility: 'Mittel',
+    origin: '🧑‍💻 IDE',
+    productionReadiness: ReadinessLevel.ProductionReady, // 🟢
+    teamScaling: '🟢',
+    reviewability: '🟢',
+    onboarding: '🟢',
+    typicalError: 'Schema ≠ Realität',
+    governanceFit: '🟢'
+  },
+  {
+    id: 'policy-constrained',
+    icon: '🛡️',
+    type: 'Policy-Constrained Generation',
+    definition: 'Regeln erzwingen',
+    examples: 'Open Policy Agent (OPA), Enterprise LLM Gateways',
+    autonomy: AutonomyLevel.Medium,
+    sourceOfTruth: 'Policies',
+    latency: LatencyLevel.EarlyCheap, // ⏱️ Früh
+    predictability: 'Hoch',
+    codeQuality: 'Hoch',
+    compatibility: 'Mittel',
+    origin: '🧑‍💻 CLI / CI',
+    productionReadiness: ReadinessLevel.ProductionReady, // 🟢
+    teamScaling: '🟢',
+    reviewability: '🟢',
+    onboarding: '🟡',
+    typicalError: 'Overblocking',
+    governanceFit: '🟢'
+  },
+  {
+    id: 'pattern-aware',
+    icon: '🏗️',
+    type: 'Pattern-Aware Generation',
+    definition: 'Architektur erzwingen',
+    examples: 'Nx Generators, Angular Schematics + AI',
+    autonomy: AutonomyLevel.Medium,
+    sourceOfTruth: 'Patterns',
+    latency: LatencyLevel.EarlyCheap, // ⏱️ Früh
+    predictability: 'Hoch',
+    codeQuality: 'Hoch',
+    compatibility: 'Mittel',
+    origin: '🧑‍💻 IDE',
+    productionReadiness: ReadinessLevel.ProductionReady, // 🟢
+    teamScaling: '🟢',
+    reviewability: '🟢',
+    onboarding: '🟡',
+    typicalError: 'Pattern-Overfit',
+    governanceFit: '🟢'
+  },
+  {
+    id: 'agent-coding',
+    icon: '🕵️',
+    type: 'Agent Coding',
+    definition: 'Mensch steuert Agenten',
+    examples: 'Devin, AutoGPT, OpenHands (OpenDevin)',
+    autonomy: AutonomyLevel.High,
+    sourceOfTruth: 'Rollen + Artefakte',
+    latency: LatencyLevel.EarlyCheap, // ⏱️ Früh
+    predictability: 'Hoch',
+    codeQuality: 'Hoch',
+    compatibility: 'Hoch',
+    origin: '🧑‍💻 IDE + CLI',
+    productionReadiness: ReadinessLevel.ProductionReady, // 🟢
+    teamScaling: '🟢',
+    reviewability: '🟡',
+    onboarding: '🔴',
+    typicalError: 'Rollen zu breit',
+    governanceFit: '⚠️'
+  },
+  {
+    id: 'agentic-coding',
+    icon: '🧠',
+    type: 'Agentic Coding',
+    definition: 'Agent plant selbst',
+    examples: 'LangChain Autonomous Agents, Multi-Agent Systems',
+    autonomy: AutonomyLevel.Extreme,
+    sourceOfTruth: 'Task-Plan + Policies',
+    latency: LatencyLevel.LateExpensive,
+    predictability: 'Variabel',
+    codeQuality: 'Mittel–hoch',
+    compatibility: 'Mittel',
+    origin: '🧑‍💻 CLI',
+    productionReadiness: ReadinessLevel.Conditional, // 🟡
+    teamScaling: '⚠️',
+    reviewability: '🔴',
+    onboarding: '🔴',
+    typicalError: 'Implizite Domäne + Seiteneffekte',
+    governanceFit: '❌'
+  },
+  {
+    id: 'hybrid-engineering',
+    icon: '🦸',
+    type: 'Hybrid Engineering',
+    definition: 'Modus je Phase',
+    examples: 'Senior Devs mit Cursor + Terminal + Docs',
+    autonomy: AutonomyLevel.Medium,
+    sourceOfTruth: 'Alles',
+    latency: LatencyLevel.EarlyCheap,
+    predictability: 'Sehr hoch',
+    codeQuality: 'Sehr hoch',
+    compatibility: 'Hoch',
+    origin: '🧑‍💻 IDE + CI',
+    productionReadiness: ReadinessLevel.ProductionReady, // 🟢
+    teamScaling: '🟢',
+    reviewability: '🟢',
+    onboarding: '🟡',
+    typicalError: 'Falscher Modus',
+    governanceFit: '🟢'
+  }
+];
+
+export const LEGEND_ITEMS = [
+  // Autonomy
+  { icon: '🤏', label: 'Braucht viel Hilfe (Mensch muss machen)' },
+  { icon: '🤖', label: 'Hilft gut mit (Assistent)' },
+  { icon: '🔥', label: 'Macht fast alles (Autopilot)' },
+  { icon: '🚨', label: 'Macht alles (Wild / Experimentell)' },
+  
+  // Readiness / Quality
+  { icon: '🟢', label: 'Startklar / Top' },
+  { icon: '🟡', label: 'Teilweise fertig / Okay' }, // Changed from "Geht so" / "Bedingt"
+  { icon: '⚠️', label: 'Vorsicht geboten / Eingeschränkt' },
+  { icon: '❌', label: 'Noch nicht fertig / Geht nicht' },
+  { icon: '🔴', label: 'Schlecht / Risiko' },
+  
+  // Latency / Cost
+  { icon: '⚡', label: 'Blitzschnell & Billig' },
+  { icon: '⏱️', label: 'Normal' },
+  { icon: '🐢', label: 'Langsam & Teuer' },
+  
+  // Misc
+  { icon: '🧩', label: 'Passt gut in die Toolchain' },
+  { icon: '♻️', label: 'Misch-Masch (Hybrid Skill)' },
+];
