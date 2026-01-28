@@ -1,4 +1,4 @@
-# AI Coding Paradigms 2025
+# AI Coding Paradigms 2025/26
 
 A comprehensive visualization and comparison of modern AI-assisted coding approaches, from low-code platforms to autonomous agents.
 
